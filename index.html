@@ -1,0 +1,1005 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FarmLab</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+  <!-- Background behind the floating site
+  <div class="bg" aria-hidden="true">
+    <img class="bg-img" src="./assets/screen.jpg" alt="" />
+    <div class="bg-tint"></div>
+  </div> -->
+
+  <!-- Floating scrollable frame -->
+  <div class="frame">
+    <div class="frame-inner">
+
+      <!-- TOP NAV (outside hero so it won't overlap it) -->
+      <nav class="top-nav" aria-label="Primary navigation">
+        <div class="nav-inner">
+          <div class="nav-brand">FarmLab</div>
+          <div class="nav-links">
+            <a href="#top">Home</a>
+            <a href="#works">What works</a>
+            <a href="#scenario">Scenario Lab</a>
+            <a href="#how">How it works</a>
+          </div>
+        </div>
+      </nav>
+
+      <!-- TITLE PAGE -->
+      <section class="hero" id="top">
+        <div class="hero-cloud" aria-hidden="true"></div>
+        <div class="hero-glass-bottom" aria-hidden="true"></div>
+
+        <div class="title-stack">
+          <div class="subtitle">A 3D crop simulator for exploring how farming decisions change crop structure, function, and reflectance.</div>
+          <div class="title">A Digital Wheat Field</div>
+
+          <div class="about">
+            <p></p>
+            <p>
+              The simulator maps management inputs into derived physiological traits, uses those traits
+              to parameterize canopy structure generation, and computes spectral reflectance through
+              RTM-driven forward modeling.
+            </p>
+          </div>
+        </div>
+
+        <div class="scroll-hint" aria-hidden="true">
+          <span class="scroll-dot"></span>
+          <span class="scroll-text">Scroll</span>
+        </div>
+      </section>
+
+      <!-- STORY -->
+      <section class="section story">
+        <div class="section-inner story-inner">
+          <h2>Story</h2>
+
+          <p>
+            Crop decisions are often made with only fragments of the full picture. Much of farming still relies on
+            conventional practice and hard-earned intuition — and that intuition is valuable. But with shifting climate
+            patterns and rapidly evolving farming methods, decision-making is starting to look more like careful
+            experimentation. You adjust an input, you watch the crop, you learn — sometimes with risk attached.
+          </p>
+
+          <p>
+            The problem is that feedback often arrives late. We notice stress when the canopy already looks different.
+            Researchers can describe what’s happening inside the plant, but translating that into day-to-day decisions
+            isn’t always straightforward. Reflectance can carry early signals, sometimes long before symptoms become
+            visible, but decoding those signals usually demands models and expertise.
+          </p>
+
+          <p>
+            I wanted to build a space where these links are easier to grasp — where you can move between plant traits,
+            canopy structure, and spectrum in either direction, and still keep the story coherent.
+          </p>
+
+          <p>
+            Looking ahead, this prototype could become more farm-specific. With real observations and calibration, the
+            same framework could evolve into a lightweight digital twin tailored to individual fields. For now, it stays
+            intentionally simple and honest: a fast, explainable tool that builds intuition before it makes promises.
+          </p>
+        </div>
+      </section>
+
+      <!-- WHAT WORKS -->
+      <section class="section works" id="works">
+        <div class="section-box works-box">
+          <div class="section-inner">
+            <h2>What works so far</h2>
+            <p class="section-lead">
+              A lightweight end-to-end loop is already in place: inputs → translated traits → engines → outputs.
+              Click a layer to expand details.
+            </p>
+
+            <div class="works-ui" data-state="collapsed" data-active="inputs" aria-label="Prototype layers">
+
+              <!-- Cards row/rail -->
+              <div class="works-rail" role="tablist" aria-label="Layers">
+                <button class="work-card is-active" type="button" role="tab" aria-selected="true" data-key="inputs">
+                  <div class="work-kicker">01</div>
+                  <div class="work-title">Input layer</div>
+                  <div class="work-mini">Two input modes for different levels of control.</div>
+                </button>
+
+                <button class="work-card" type="button" role="tab" aria-selected="false" data-key="translation">
+                  <div class="work-kicker">02</div>
+                  <div class="work-title">Translation model</div>
+                  <div class="work-mini">Maps decisions into derived physiological and structural traits.</div>
+                </button>
+
+                <button class="work-card" type="button" role="tab" aria-selected="false" data-key="engines">
+                  <div class="work-kicker">03</div>
+                  <div class="work-title">Engines</div>
+                  <div class="work-mini">Structural generation + RTM forward modeling.</div>
+                </button>
+
+                <button class="work-card" type="button" role="tab" aria-selected="false" data-key="viz">
+                  <div class="work-kicker">04</div>
+                  <div class="work-title">Visualization</div>
+                  <div class="work-mini">3D views + spectral output + exports.</div>
+                </button>
+              </div>
+
+              <!-- Detail panel (hidden when collapsed via CSS) -->
+              <div class="works-detail" role="tabpanel" aria-live="polite">
+
+                <div class="detail-card" data-panel="inputs">
+                  <div class="detail-header">
+                    <div class="detail-eyebrow">Input layer</div>
+                    <div class="detail-hint">Click another card to switch • Click again to collapse</div>
+                  </div>
+
+                  <div class="detail-body">
+                    <p>
+                      The prototype exposes two control perspectives, so different users can explore the same system
+                      without getting lost in parameters.
+                    </p>
+
+                    <div class="detail-grid">
+                      <div class="detail-box">
+                        <div class="detail-box-title">Farmer mode</div>
+                        <ul class="detail-list">
+                          <li>Decision-oriented inputs (management knobs)</li>
+                          <li>Designed for fast “what-if” exploration</li>
+                          <li>Focus on visible effects and intuition</li>
+                        </ul>
+                      </div>
+
+                      <div class="detail-box">
+                        <div class="detail-box-title">Expert mode</div>
+                        <ul class="detail-list">
+                          <li>Direct access to derived canopy / RTM parameters</li>
+                          <li>Fine control for sensitivity exploration</li>
+                          <li>Closer to modeling language than decisions</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="detail-card" data-panel="translation" hidden>
+                  <div class="detail-header">
+                    <div class="detail-eyebrow">Translation model</div>
+                    <div class="detail-hint">Decision space → trait space</div>
+                  </div>
+
+                  <div class="detail-body">
+                    <p>
+                      This layer turns heterogeneous inputs into a coherent set of traits that can drive both structure and optics.
+                      It keeps the mapping explainable: each decision has visible downstream consequences.
+                    </p>
+
+                    <ul class="detail-list">
+                      <li><strong>Management inputs</strong> → interpreted shifts in physiological state (proxies).</li>
+                      <li><strong>Functional traits</strong> → RTM-facing parameters for optical response.</li>
+                      <li><strong>Structural traits</strong> → geometry cues (leaf distributions, angles, density).</li>
+                      <li><strong>Goal</strong> → preserve one coherent story across traits, canopy, and spectrum.</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="detail-card" data-panel="engines" hidden>
+                  <div class="detail-header">
+                    <div class="detail-eyebrow">Engines</div>
+                    <div class="detail-hint">Traits → structure + reflectance</div>
+                  </div>
+
+                  <div class="detail-body">
+                    <p>
+                      Once traits are set, engines convert them into (1) canopy geometry and (2) spectral response through forward modeling.
+                    </p>
+
+                    <div class="detail-grid">
+                      <div class="detail-box">
+                        <div class="detail-box-title">Structure engine</div>
+                        <ul class="detail-list">
+                          <li>Rule-based wheat geometry generation</li>
+                          <li>Field layout via repeated clumps</li>
+                          <li>Parameter-driven variability</li>
+                        </ul>
+                      </div>
+
+                      <div class="detail-box">
+                        <div class="detail-box-title">RTM engine</div>
+                        <ul class="detail-list">
+                          <li>Trait state mapped into RTM inputs</li>
+                          <li>Forward simulation produces reflectance</li>
+                          <li>Built for iteration and explainability</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- ✅ Visualization detail card now contains the preview viewer -->
+                <div class="detail-card" data-panel="viz" hidden>
+                  <div class="detail-header">
+                    <div class="detail-eyebrow">Visualization</div>
+                    <div class="detail-hint">Choose a view to preview below</div>
+                  </div>
+
+                  <div class="detail-body">
+                    <p>
+                      The app emphasizes feedback you can trust: cause → effect is visible across views.
+                      Pick a view to preview it below.
+                    </p>
+
+                    <div class="viz-buttons" role="group" aria-label="Visualization previews">
+                      <button class="viz-btn" type="button" data-viz="plant">Single plant viewer</button>
+                      <button class="viz-btn" type="button" data-viz="canopy">Field viewer</button>
+                      <button class="viz-btn" type="button" data-viz="reflectance">Reflectance plot</button>
+                    </div>
+
+                    <!-- Dynamic description updates based on selected preview -->
+                    <div class="viz-meta" aria-live="polite">
+                      <div class="viz-meta-title" id="vizMetaTitle">Select a view</div>
+                      <div class="viz-meta-desc" id="vizMetaDesc">
+                        Choose one of the previews above to see what it represents and what assumptions it carries.
+                      </div>
+                      <ul class="viz-props" id="vizMetaProps"></ul>
+                    </div>
+
+                    <!-- ✅ Preview area moved INSIDE the viz detail card -->
+                    <div class="viz-media" id="vizMedia" aria-live="polite">
+
+                      <!-- Thinking bubble overlay anchored to the preview card -->
+                      <div class="viz-think" id="vizThink" aria-hidden="true">
+                        <div class="viz-think-bubble">
+                          <span class="viz-think-label">Puzzle</span>
+                          <span class="viz-think-text">“Something upstream was tweaked. Can you reverse-engineer the hidden inputs from the 3D changes and the reflectance curve?”</span>
+                          <span class="viz-think-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                        </div>
+                      </div>
+
+                      <div class="viz-placeholder" id="vizPlaceholder">
+                        Select a visualization above to preview it here.
+                      </div>
+
+                      <video class="viz-video" id="vizPlant" src="./assets/preview-plant.mp4"
+                        muted loop playsinline controls preload="metadata"></video>
+
+                      <video class="viz-video" id="vizCanopy" src="./assets/preview-canopy.mp4"
+                        muted loop playsinline controls preload="metadata"></video>
+
+                      <video class="viz-video" id="vizReflectance" src="./assets/preview-reflectance.mp4"
+                        muted loop playsinline controls preload="metadata"></video>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section scenario" id="scenario">
+        <div class="section-box scenario-box">
+          <div class="section-inner">
+            <h2>Scenario Lab</h2>
+            <p class="section-lead">
+              Build a quick “what-if” setup by pairing nitrogen level with planting spacing.
+              Drag a choice into each slot, then create a scenario.
+            </p>
+
+            <div class="scenario-ui" data-mode="build" aria-label="Scenario lab layout">
+
+              <!-- LEFT: Side panel (palette) -->
+              <aside class="scenario-side" aria-label="Scenario parameters">
+                <div class="scenario-palette">
+
+                  <div class="scenario-group" aria-label="Nitrogen choices">
+                    <div class="scenario-group-title">
+                      Nitrogen
+                      <span class="scenario-group-sub">drag one</span>
+                    </div>
+
+                    <div class="chip-row">
+                      <button class="chip" draggable="true" data-type="nitrogen" data-value="Low" data-tone="low" type="button">Low</button>
+                      <button class="chip" draggable="true" data-type="nitrogen" data-value="Moderate" data-tone="mid" type="button">Moderate</button>
+                      <button class="chip" draggable="true" data-type="nitrogen" data-value="High" data-tone="high" type="button">High</button>
+                    </div>
+                  </div>
+
+                  <div class="scenario-group" aria-label="Planting spacing choices">
+                    <div class="scenario-group-title">
+                      Planting spacing
+                      <span class="scenario-group-sub">drag one</span>
+                    </div>
+
+                    <div class="chip-row">
+                      <button class="chip" draggable="true" data-type="spacing" data-value="Sparse" data-tone="low" type="button">Sparse</button>
+                      <button class="chip" draggable="true" data-type="spacing" data-value="Moderate" data-tone="mid" type="button">Moderate</button>
+                      <button class="chip" draggable="true" data-type="spacing" data-value="Dense" data-tone="high" type="button">Dense</button>
+                    </div>
+                  </div>
+
+                  <div class="scenario-tip">
+                    Tip: You can also <strong>click</strong> a chip, then click a slot — useful on touch devices.
+                  </div>
+
+                </div>
+              </aside>
+
+              <!-- RIGHT: Main panel (builder / viewer) -->
+              <main class="scenario-main" aria-label="Scenario workspace">
+
+                <!-- BUILD MODE -->
+                <div class="scenario-maincard scenario-build" id="scenarioBuild">
+                  <div class="scenario-mainhead">
+                    <div class="scenario-main-title">Build scenario</div>
+                    <div class="scenario-main-sub" id="scenarioSummary">
+                      Select two conditions to create a scenario.
+                    </div>
+                  </div>
+
+                  <div class="slot-grid">
+
+                    <div class="slot-card" data-slot="nitrogen" tabindex="0" role="button" aria-label="Nitrogen slot">
+                      <div class="slot-top">
+                        <div class="slot-label">Nitrogen</div>
+                        <button class="slot-clear" type="button" data-clear="nitrogen" aria-label="Clear nitrogen">Clear</button>
+                      </div>
+                      <div class="slot-body">
+                        <div class="slot-placeholder">Drop a nitrogen level here</div>
+                        <div class="slot-pill" hidden></div>
+                      </div>
+                    </div>
+
+                    <div class="slot-card" data-slot="spacing" tabindex="0" role="button" aria-label="Planting spacing slot">
+                      <div class="slot-top">
+                        <div class="slot-label">Planting spacing</div>
+                        <button class="slot-clear" type="button" data-clear="spacing" aria-label="Clear spacing">Clear</button>
+                      </div>
+                      <div class="slot-body">
+                        <div class="slot-placeholder">Drop a spacing level here</div>
+                        <div class="slot-pill" hidden></div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="scenario-actions scenario-actions-wide">
+                    <button class="scenario-create" id="scenarioCreate" type="button" disabled>
+                      Create scenario
+                    </button>
+                  </div>
+
+                  <div class="scenario-output" aria-label="Created scenarios">
+                    <div class="scenario-output-title">Created scenarios</div>
+                    <div class="scenario-list" id="scenarioList">
+                      <div class="scenario-empty">No scenarios yet.</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- VIEW MODE -->
+                <div class="scenario-maincard scenario-view" id="scenarioView" hidden>
+                  <div class="scenario-mainhead">
+                    <div class="scenario-main-title">Scenario viewer</div>
+                    <div class="scenario-main-sub" id="scenarioPreviewSub">
+                      —
+                    </div>
+                  </div>
+
+                  <div class="scenario-player">
+                    <video id="scenarioVideo" class="scenario-video" controls playsinline preload="metadata"></video>
+                  </div>
+
+                  <div class="scenario-interpret" id="scenarioInterpret" hidden>
+                    <div class="interpret-title">Interpretation</div>
+                    <div class="interpret-text" id="interpretText"></div>
+                    <div class="interpret-grid" id="interpretGrid"></div>
+                  </div>
+
+                  <div class="scenario-actions scenario-actions-wide">
+                    <button class="scenario-reset" id="scenarioReset" type="button">
+                      Reset (build a new scenario)
+                    </button>
+                  </div>
+                </div>
+              </main>
+            </div>
+          </div>
+        </div> 
+      </section>
+
+
+      
+      <!-- Placeholder next section -->
+      <section class="section" id="how">
+        <div class="section-inner">
+          <h2>How it works</h2>
+          <p>(Next) Add the conceptual flow + architecture diagram here.</p>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const worksUI = document.querySelector(".works-ui");
+      if (!worksUI) return;
+
+      const cards = Array.from(worksUI.querySelectorAll(".work-card"));
+      const panels = Array.from(worksUI.querySelectorAll(".detail-card"));
+
+      // Visualization buttons + media
+      const btns = Array.from(document.querySelectorAll(".viz-btn"));
+      const placeholder = document.getElementById("vizPlaceholder");
+      const thinkEl = document.getElementById("vizThink");
+
+      const vids = {
+        plant: document.getElementById("vizPlant"),
+        canopy: document.getElementById("vizCanopy"),
+        reflectance: document.getElementById("vizReflectance")
+      };
+
+      const vizMetaTitle = document.getElementById("vizMetaTitle");
+      const vizMetaDesc  = document.getElementById("vizMetaDesc");
+      const vizMetaProps = document.getElementById("vizMetaProps");
+
+      const VIZ_INFO = {
+        plant: {
+          title: "Single plant viewer",
+          desc:
+            "A fully hard-coded primitive wheat plant model representing a single fixed growth stage. " +
+            "Used to inspect geometry and parameter effects in isolation before scaling to canopy.",
+          props: [
+            ["Model type", "Fully hard-coded primitive structure"],
+            ["Growth stage", "Single fixed stage (no time-step yet)"],
+            ["Scope", "One plant, isolated view"],
+            ["Use", "Inspect geometry + build intuition"]
+          ]
+        },
+        canopy: {
+          title: "Field viewer",
+          desc:
+            "A canopy-scale view assembled from raw plant primitives and repeated clump geometry. " +
+            "Used to approximate field structure and visual density effects at scale.",
+          props: [
+            ["Geometry", "Raw primitives + instanced clump layout"],
+            ["Field layout", "Repeated clumps for canopy-scale behavior"],
+            ["Scope", "Canopy/plot view (many plants)"],
+            ["Use", "Density, spacing, structure inspection"]
+          ]
+        },
+        reflectance: {
+          title: "Reflectance plot",
+          desc:
+            "A forward-modeled reflectance output view. Shows how the current trait/parameter state " +
+            "maps into spectral response across wavelengths.",
+          props: [
+            ["Output", "Simulated reflectance spectrum"],
+            ["Domain", "Wavelength-dependent signal"],
+            ["Scope", "Spectral response of current state"],
+            ["Use", "Track spectral changes across inputs/traits"]
+          ]
+        }
+      };
+
+      function setActive(key) {
+        worksUI.dataset.active = key;
+
+        cards.forEach((c) => {
+          const isActive = c.dataset.key === key;
+          c.classList.toggle("is-active", isActive);
+          c.setAttribute("aria-selected", String(isActive));
+        });
+
+        panels.forEach((p) => {
+          p.hidden = (p.dataset.panel !== key);
+        });
+      }
+
+      function collapse() {
+        worksUI.dataset.state = "collapsed";
+      }
+
+      function expand(key) {
+        worksUI.dataset.state = "split";
+        setActive(key);
+      }
+
+      function toggleCard(nextKey) {
+        const isCollapsed = worksUI.dataset.state === "collapsed";
+        const currentKey = worksUI.dataset.active || "inputs";
+
+        if (isCollapsed) { expand(nextKey); return; }
+        if (currentKey === nextKey) { collapse(); return; }
+        expand(nextKey);
+      }
+
+      cards.forEach((card) => {
+        card.addEventListener("click", () => toggleCard(card.dataset.key));
+        card.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            toggleCard(card.dataset.key);
+          }
+        });
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && worksUI.dataset.state === "split") collapse();
+      });
+
+      // --- Preview logic (flexible size, no cropping) ---
+      function stopAll() {
+        Object.values(vids).forEach((v) => {
+          if (!v) return;
+          v.pause();
+          v.currentTime = 0;
+          v.style.display = "none";
+        });
+      }
+
+      function updateVizMeta(which) {
+        const info = VIZ_INFO[which];
+        if (!info || !vizMetaTitle || !vizMetaDesc || !vizMetaProps) return;
+
+        vizMetaTitle.textContent = info.title;
+        vizMetaDesc.textContent = info.desc;
+
+        vizMetaProps.innerHTML = info.props
+          .map(([k, v]) => `<li><strong>${k}:</strong> ${v}</li>`)
+          .join("");
+      }
+
+      function setViz(which) {
+        // ensure visualization panel is visible
+        worksUI.dataset.state = "split";
+        setActive("viz");
+
+        btns.forEach((b) => b.classList.toggle("is-active", b.dataset.viz === which));
+
+        if (placeholder) placeholder.style.display = "none";
+        if (thinkEl) thinkEl.style.display = "block";
+
+        updateVizMeta(which);
+
+        stopAll();
+        const v = vids[which];
+        if (!v) return;
+
+        v.style.display = "block";
+        v.play().catch(() => { /* autoplay may be blocked */ });
+      }
+
+      btns.forEach((b) => b.addEventListener("click", () => setViz(b.dataset.viz)));
+
+      // initial state
+      worksUI.dataset.state = "collapsed";
+      setActive("inputs");
+      if (thinkEl) thinkEl.style.display = "none";
+
+      /* =========================================================
+        Scenario Lab: drag/drop + create
+      ========================================================= */
+      (function initScenarioLab(){
+        const lab = document.querySelector(".scenario-ui");
+        const chips = Array.from(document.querySelectorAll(".chip"));
+        const slots = Array.from(document.querySelectorAll(".slot-card"));
+        const clearBtns = Array.from(document.querySelectorAll(".slot-clear"));
+
+        const summary = document.getElementById("scenarioSummary");
+        const createBtn = document.getElementById("scenarioCreate");
+        const listEl = document.getElementById("scenarioList");
+
+        const buildWrap = document.getElementById("scenarioBuild");
+        const viewWrap  = document.getElementById("scenarioView");
+        const resetBtn  = document.getElementById("scenarioReset");
+
+        const video = document.getElementById("scenarioVideo");
+        const previewSub = document.getElementById("scenarioPreviewSub");
+        const interpretBox = document.getElementById("scenarioInterpret");
+        const interpretText = document.getElementById("interpretText");
+        const interpretGrid = document.getElementById("interpretGrid");
+
+        if (!lab || !chips.length || !slots.length || !summary || !createBtn || !listEl || !buildWrap || !viewWrap || !resetBtn) return;
+
+        const state = {
+          nitrogen: null, // { value, tone }
+          spacing: null,  // { value, tone }
+          picked: null
+        };
+
+        function setMode(mode){
+          lab.dataset.mode = mode;
+          if (mode === "build"){
+            buildWrap.hidden = false;
+            viewWrap.hidden = true;
+          } else {
+            buildWrap.hidden = true;
+            viewWrap.hidden = false;
+          }
+        }
+
+        function updateUI(){
+          slots.forEach((slot) => {
+            const key = slot.dataset.slot;
+            const pill = slot.querySelector(".slot-pill");
+            const ph = slot.querySelector(".slot-placeholder");
+
+            const v = state[key];
+            if (v){
+              ph.style.display = "none";
+              pill.hidden = false;
+              pill.textContent = v.value;
+              pill.classList.remove("tone-low","tone-mid","tone-high");
+              pill.classList.add(`tone-${v.tone}`);
+            } else {
+              ph.style.display = "block";
+              pill.hidden = true;
+              pill.textContent = "";
+            }
+          });
+
+          const ready = !!(state.nitrogen && state.spacing);
+          createBtn.disabled = !ready;
+
+          if (!ready){
+            summary.textContent = "Select two conditions to create a scenario.";
+          } else {
+            summary.textContent = `Ready: Nitrogen = ${state.nitrogen.value} • Spacing = ${state.spacing.value}`;
+          }
+        }
+
+        function setSlot(slotKey, value, tone){
+          state[slotKey] = { value, tone };
+          updateUI();
+        }
+
+        function clearSlot(slotKey){
+          state[slotKey] = null;
+          updateUI();
+        }
+
+        function clearPicked(){
+          chips.forEach(x => x.classList.remove("is-picked"));
+          state.picked = null;
+        }
+
+        // ---------- Drag & drop ----------
+        function onDragStart(e){
+          const t = e.currentTarget;
+          const payload = { type: t.dataset.type, value: t.dataset.value, tone: t.dataset.tone };
+          e.dataTransfer.setData("application/json", JSON.stringify(payload));
+          e.dataTransfer.effectAllowed = "move";
+        }
+
+        function onDragOver(e){
+          e.preventDefault();
+          e.dataTransfer.dropEffect = "move";
+          e.currentTarget.classList.add("is-over");
+        }
+
+        function onDragLeave(e){
+          e.currentTarget.classList.remove("is-over");
+        }
+
+        function onDrop(e){
+          e.preventDefault();
+          const slot = e.currentTarget;
+          slot.classList.remove("is-over");
+
+          let payload = null;
+          try { payload = JSON.parse(e.dataTransfer.getData("application/json")); } catch {}
+          if (!payload) return;
+
+          const slotKey = slot.dataset.slot;
+          if (payload.type !== slotKey) return;
+
+          setSlot(slotKey, payload.value, payload.tone);
+        }
+
+        chips.forEach((c) => {
+          c.addEventListener("dragstart", onDragStart);
+
+          // click-to-place fallback
+          c.addEventListener("click", () => {
+            clearPicked();
+            c.classList.add("is-picked");
+            state.picked = { type: c.dataset.type, value: c.dataset.value, tone: c.dataset.tone };
+            summary.textContent = `Selected “${state.picked.value}” — now click the matching slot to place it.`;
+          });
+        });
+
+        slots.forEach((s) => {
+          s.addEventListener("dragover", onDragOver);
+          s.addEventListener("dragleave", onDragLeave);
+          s.addEventListener("drop", onDrop);
+
+          s.addEventListener("click", () => {
+            if (!state.picked) return;
+            const slotKey = s.dataset.slot;
+            if (state.picked.type !== slotKey) return;
+
+            setSlot(slotKey, state.picked.value, state.picked.tone);
+            clearPicked();
+          });
+        });
+
+        clearBtns.forEach((b) => {
+          b.addEventListener("click", (e) => {
+            e.stopPropagation();
+            clearSlot(b.dataset.clear);
+          });
+        });
+
+        // ---------- Created list ----------
+        function addScenario(nitro, spacing){
+          const empty = listEl.querySelector(".scenario-empty");
+          if (empty) empty.remove();
+
+          const item = document.createElement("div");
+          item.className = "scenario-item";
+
+          const left = document.createElement("div");
+          const title = document.createElement("div");
+          title.className = "scenario-item-title";
+          title.textContent = `${nitro.value} N + ${spacing.value} spacing`;
+
+          const sub = document.createElement("div");
+          sub.className = "scenario-item-sub";
+          sub.textContent = "Scenario created — loaded into viewer.";
+
+          left.appendChild(title);
+          left.appendChild(sub);
+
+          item.appendChild(left);
+          listEl.prepend(item);
+        }
+
+        // ---------- Interpretation ----------
+        function buildInterpretation(nitrogen, spacing){
+
+          const key = `${nitrogen}-${spacing}`;
+
+          const SCENARIOS = {
+
+            "Low-Sparse": {
+              summary:
+                "Nitrogen deficiency limits growth even when space is available. Individual plants remain small, and the canopy never closes.",
+              cards: [
+                {
+                  title: "Field view",
+                  body:
+                    "The canopy stays open and patchy. Plants are short with low leaf area, so the soil background remains clearly visible."
+                },
+                {
+                  title: "Single plant",
+                  body:
+                    "A weak, small plant with fewer leaves and a reduced spike. Older, lower leaves show yellowing starting at the tip and progressing along the blade, reflecting nitrogen remobilization to younger tissue."
+                },
+                {
+                  title: "Reflectance",
+                  body:
+                    "Higher visible reflectance due to reduced chlorophyll absorption, especially in the red. NIR remains low because leaf area and internal scattering are limited."
+                }
+              ]
+            },
+
+            "Moderate-Sparse": {
+              summary:
+                "Adequate nitrogen supports healthy individual plants, but wide spacing limits canopy closure.",
+              cards: [
+                {
+                  title: "Field view",
+                  body:
+                    "Plants appear healthier and more uniform than in deficient conditions, but the field still looks open because spacing is wide."
+                },
+                {
+                  title: "Single plant",
+                  body:
+                    "A well-formed plant with good height, more leaves, and a clearly developed spike. Leaves appear greener and more erect."
+                },
+                {
+                  title: "Reflectance",
+                  body:
+                    "Stronger chlorophyll absorption in the visible and higher NIR compared to nitrogen-deficient conditions. However, NIR does not reach dense-canopy levels due to limited ground coverage."
+                }
+              ]
+            },
+
+            "High-Sparse": {
+              summary:
+                "High nitrogen drives vigorous growth, but sparse planting reduces lodging risk by limiting competition and mutual shading.",
+              cards: [
+                {
+                  title: "Field view",
+                  body:
+                    "The canopy becomes lush but remains partially open. Lodging is minor or absent because plants are not crowded."
+                },
+                {
+                  title: "Single plant",
+                  body:
+                    "A taller plant with abundant foliage and slightly softer posture. Stems may appear less sturdy, but plants remain upright."
+                },
+                {
+                  title: "Reflectance",
+                  body:
+                    "Visible reflectance drops due to increased greenness, while NIR increases from higher biomass. The NIR signal remains moderated by sparse canopy cover."
+                }
+              ]
+            },
+
+            "Moderate-Moderate": {
+              summary:
+                "A balanced baseline scenario where healthy plant growth translates efficiently into canopy closure.",
+              cards: [
+                {
+                  title: "Field view",
+                  body:
+                    "A uniform, closed canopy with minimal gaps and consistent height across the field."
+                },
+                {
+                  title: "Single plant",
+                  body:
+                    "Balanced architecture with a strong stem, good spike development, and leaves that are neither sparse nor excessively floppy."
+                },
+                {
+                  title: "Reflectance",
+                  body:
+                    "Deep chlorophyll absorption in the visible and a high, stable NIR plateau driven by strong scattering from a closed canopy."
+                }
+              ]
+            },
+
+            "Moderate-Dense": {
+              summary:
+                "Even with sufficient nitrogen, high planting density introduces competition-driven structural stress.",
+              cards: [
+                {
+                  title: "Field view",
+                  body:
+                    "The canopy closes, but plants may look slightly elongated and less uniform due to competition for light."
+                },
+                {
+                  title: "Single plant",
+                  body:
+                    "Plants appear taller and slimmer, with subtle reductions in robustness as resources are shared among many neighbors."
+                },
+                {
+                  title: "Reflectance",
+                  body:
+                    "NIR remains high due to canopy closure, but structural changes (more erect leaves) alter scattering patterns compared to an optimally dense canopy."
+                }
+              ]
+            },
+
+            "High-Dense": {
+              summary:
+                "Excess nitrogen and dense planting combine to create high biomass with weak structural support, leading to patchy lodging.",
+              cards: [
+                {
+                  title: "Field view",
+                  body:
+                    "Uneven lodging appears in wiggly, spatially clustered patches. Severe lodging occurs at patch centers, with moderate lodging toward the edges, often falling in a common direction."
+                },
+                {
+                  title: "Single plant",
+                  body:
+                    "Tall, lush plants with abundant foliage and weak stem posture. The canopy feels heavy and top-loaded."
+                },
+                {
+                  title: "Reflectance",
+                  body:
+                    "Increased biomass can raise NIR, but lodging alters canopy geometry. Flattened and horizontal leaves change scattering behavior, producing spectral signatures that differ in shape—not just intensity—from healthy dense canopies."
+                }
+              ]
+            },
+
+            "Low-Dense": {
+              summary:
+                "High planting density cannot compensate for nitrogen deficiency and may intensify competition for an already limited resource.",
+              cards: [
+                {
+                  title: "Field view",
+                  body:
+                    "The stand may appear packed, but plants remain short, weak, and uneven, with poor leaf development."
+                },
+                {
+                  title: "Single plant",
+                  body:
+                    "Small plants with strong deficiency symptoms, including reduced leaf number and limited spike development."
+                },
+                {
+                  title: "Reflectance",
+                  body:
+                    "Visible reflectance remains relatively high due to low chlorophyll content. NIR does not increase as much as expected for a dense stand because overall leaf area remains limited."
+                }
+              ]
+            }
+
+          };
+
+          return SCENARIOS[key] || {
+            summary: "Scenario not defined.",
+            cards: []
+          };
+        }
+
+
+        // ---------- Create scenario -> switch to viewer ----------
+        createBtn.addEventListener("click", () => {
+          if (!(state.nitrogen && state.spacing)) return;
+
+          addScenario(state.nitrogen, state.spacing);
+
+          const nTok = (state.nitrogen.value === "Low") ? "nlow"
+                    : (state.nitrogen.value === "Moderate") ? "nmod"
+                    : "nhigh";
+
+          const sTok = (state.spacing.value === "Sparse") ? "ssparse"
+                    : (state.spacing.value === "Moderate") ? "smod"
+                    : "sdense";
+
+          const file = `./assets/scenario-${nTok}-${sTok}.mp4`;
+
+          if (previewSub) previewSub.textContent = `${state.nitrogen.value} nitrogen • ${state.spacing.value} spacing`;
+
+          if (video) {
+            video.pause();
+            video.src = file;
+            video.load();
+            video.play().catch(() => {});
+          }
+
+          const interp = buildInterpretation(state.nitrogen.value, state.spacing.value);
+          if (interpretText) interpretText.textContent = interp.summary;
+
+          if (interpretGrid) {
+            interpretGrid.innerHTML = interp.cards.map(c => `
+              <div class="interpret-card">
+                <div class="interpret-card-title">${c.title}</div>
+                <div class="interpret-card-body">${c.body}</div>
+              </div>
+            `).join("");
+          }
+
+          if (interpretBox) interpretBox.hidden = false;
+
+          setMode("view");
+          viewWrap.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+
+        // ---------- Reset -> back to builder ----------
+        resetBtn.addEventListener("click", () => {
+          // stop video + clear viewer text
+          if (video) {
+            video.pause();
+            video.removeAttribute("src");
+            video.load();
+          }
+          if (previewSub) previewSub.textContent = "—";
+          if (interpretBox) interpretBox.hidden = true;
+
+          // optional: clear selections (feels cleaner)
+          state.nitrogen = null;
+          state.spacing = null;
+          clearPicked();
+          updateUI();
+
+          setMode("build");
+          buildWrap.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+
+        // init
+        setMode("build");
+        updateUI();
+      })();
+
+
+    })();
+  </script>
+
+</body>
+</html>
